@@ -24,12 +24,11 @@ function createImages(obj) {
 }
 
 function getRamenObjects() {
-
-  fetch("http://localhost:3000/ramens", {
+  fetch("https://ramen-rater-jsonserver.herokuapp.com/ramens", {
     header: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    method: "GET"
+    method: "GET",
   })
     .then((response) => response.json())
     .then((arrayObj) => {
@@ -51,11 +50,11 @@ function ramenImageClick(e) {
   console.log("ramenId: ", ramenId);
   // Make a fetch() using e.target.id:
 
-  fetch(`http://localhost:3000/ramens/${ramenId}`, {
+  fetch(`https://ramen-rater-jsonserver.herokuapp.com/ramens/${ramenId}`, {
     header: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    method: "GET"
+    method: "GET",
   })
     .then((response) => response.json())
     .then((obj) => {
@@ -65,7 +64,8 @@ function ramenImageClick(e) {
       console.log("ramenDetailDiv BEFORE clear: ", ramenDetailDiv);
       ramenDetailDiv.innerHTML = "";
       let ratingHeader = ramenDetailDiv.nextElementSibling;
-      let commentParagraph = ratingHeader.nextElementSibling.nextElementSibling.nextElementSibling;
+      let commentParagraph =
+        ratingHeader.nextElementSibling.nextElementSibling.nextElementSibling;
 
       console.log("ratingHeader: ", ratingHeader);
       console.log("commentParagraph: ", commentParagraph);
@@ -99,7 +99,11 @@ function ramenImageClick(e) {
       commentParagraph.append(breakTag);
       commentParagraph.append(deleteButton);
 
-      ramenDetailDiv.append(ramenImageTag, ramenNameHeader, ramenRestaurantHeader);
+      ramenDetailDiv.append(
+        ramenImageTag,
+        ramenNameHeader,
+        ramenRestaurantHeader
+      );
     })
     .catch((error) => {
       console.log("error: ", error.message);
@@ -145,7 +149,8 @@ function deleteButtonClick(e) {
 function clearCentralImageInfo() {
   let ramenDetailDiv = document.querySelector("#ramen-menu");
   let ratingHeader = ramenDetailDiv.nextElementSibling;
-  let commentParagraph = ratingHeader.nextElementSibling.nextElementSibling.nextElementSibling;
+  let commentParagraph =
+    ratingHeader.nextElementSibling.nextElementSibling.nextElementSibling;
   // HTML elements to create:
   let ramenImageTag = document.createElement("img");
   let ramenNameHeader = document.createElement("h2");
@@ -198,7 +203,7 @@ function createButtonClick(e) {
   let newRamenObj = {};
 
   // Add 1 to 'latestIdValue' to get the last id value present:
-  latestIdValue ++;
+  latestIdValue++;
 
   newRamenObj.id = latestIdValue;
   newRamenObj.name = newRamenName;
@@ -208,7 +213,7 @@ function createButtonClick(e) {
   newRamenObj.comment = newComment;
 
   console.log("newRamenObj before fetch(): ", newRamenObj);
-  console.log("newRamenObj.id: ", );
+  console.log("newRamenObj.id: ");
   console.log("newRamenObj.name: ", newRamenObj.name);
   console.log("newRamenObj.restaurant", newRamenObj.restaurant);
   console.log("newRamenObj.image: ", newRamenObj.image);
@@ -217,9 +222,9 @@ function createButtonClick(e) {
 
   createImages(newRamenObj);
 
-  fetch("http://localhost:3000/ramens", {
+  fetch("https://ramen-rater-jsonserver.herokuapp.com/ramens", {
     header: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
     method: "POST",
     body: JSON.stringify({
@@ -228,10 +233,9 @@ function createButtonClick(e) {
       restaurant: newRamenObj.restaurant,
       image: newRamenObj.image,
       rating: newRamenObj.rating,
-      comment: newRamenObj.comment
-    })
-  })
-    .catch((error) => {
-      console.log("error: ", error.message);
-    });
+      comment: newRamenObj.comment,
+    }),
+  }).catch((error) => {
+    console.log("error: ", error.message);
+  });
 }
