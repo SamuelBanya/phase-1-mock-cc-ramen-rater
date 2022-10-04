@@ -24,7 +24,7 @@ function createImages(obj) {
 }
 
 function getRamenObjects() {
-  fetch("https://ramen-rater-jsonserver.herokuapp.com/ramens", {
+  fetch("https://phase-1-mock-cc-ramen-rater-jsonserver.onrender.com/ramens", {
     header: {
       "Content-Type": "application/json",
     },
@@ -50,7 +50,7 @@ function ramenImageClick(e) {
   console.log("ramenId: ", ramenId);
   // Make a fetch() using e.target.id:
 
-  fetch(`https://ramen-rater-jsonserver.herokuapp.com/ramens/${ramenId}`, {
+  fetch(`https://phase-1-mock-cc-ramen-rater-jsonserver.onrender.com/ramens/${ramenId}`, {
     header: {
       "Content-Type": "application/json",
     },
@@ -222,7 +222,7 @@ function createButtonClick(e) {
 
   createImages(newRamenObj);
 
-  fetch("https://ramen-rater-jsonserver.herokuapp.com/ramens", {
+  fetch("https://phase-1-mock-cc-ramen-rater-jsonserver.onrender.com/ramens", {
     header: {
       "Content-Type": "application/json",
     },
